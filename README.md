@@ -14,12 +14,6 @@ You can install Auto-License globally via npm to use it as a command-line tool:
 npm install -g auto-license
 ```
 
-Alternatively, you can install it locally in your project:
-
-```bash
-npm install auto-license
-```
-
 ## Usage
 
 1. Run the tool using the command:

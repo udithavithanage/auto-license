@@ -2,10 +2,11 @@
   "name": "auto-license",
   "version": "1.0.4",
   "description": "Automatically add license headers to new files",
-  "main": "index.js",
+  "main": "cli.js",
   "bin": {
-    "auto-license": "index.js"
+    "auto-license": "cli.js"
   },
+  "preferGlobal": true,
   "scripts": {},
   "keywords": [
     "license",

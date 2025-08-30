@@ -79,18 +79,9 @@ Copyright (c) 2025 Your Name
 
 There are no additional scripts defined in this package. Simply run `auto-license` to start the tool.
 
-## Keywords
-
-- license
-- header
-- automation
-- file-watcher
-- cli
-- auto-license
-
 ## Author
 
-Uditha Vithanage
+[Uditha Vithanage](https://github.com/udithavithanage)
 
 ## License
 

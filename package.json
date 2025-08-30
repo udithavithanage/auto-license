@@ -4,7 +4,7 @@
   "description": "Automatically add license headers to new files",
   "main": "index.js",
   "bin": {
-    "auto-license": "./index.js"
+    "auto-license": "index.js"
   },
   "scripts": {},
   "keywords": [

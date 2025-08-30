@@ -1,0 +1,24 @@
+{
+  "name": "auto-license",
+  "version": "1.0.1",
+  "description": "Automatically add license headers to new files",
+  "main": "index.js",
+  "bin": {
+    "auto-license": "./index.js"
+  },
+  "scripts": {},
+  "keywords": [
+    "license",
+    "header",
+    "automation",
+    "file-watcher",
+    "cli",
+    "auto-license"
+  ],
+  "author": "Uditha Vithanage",
+  "license": "MIT",
+  "dependencies": {
+    "chokidar": "^3.6.0",
+    "readline-sync": "^1.4.10"
+  }
+}

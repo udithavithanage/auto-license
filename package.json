@@ -1,6 +1,6 @@
 {
   "name": "auto-license",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Automatically add license headers to new files",
   "main": "index.js",
   "bin": {

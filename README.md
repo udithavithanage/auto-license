@@ -14,13 +14,38 @@ You can install Auto-License globally via npm to use it as a command-line tool:
 npm install -g auto-license
 ```
 
+Alternatively, you can install it locally in your project:
+
+```bash
+npm install auto-license
+```
+
 ## Usage
 
 1. Run the tool using the command:
 
-```bash
-auto-license
-```
+   - For global installation:
+
+     ```bash
+     auto-license
+     ```
+
+   - For local installation:
+
+     ```bash
+     npx auto-license
+     ```
+
+   - Alternatively, if installed locally, you can add a script to your `package.json`:
+     ```json
+     "scripts": {
+       "license": "auto-license"
+     }
+     ```
+     Then run it with:
+     ```bash
+     npm run license
+     ```
 
 2. Enter the folder path you want to monitor for new files when prompted. The path will be resolved relative to your current working directory.
 
@@ -71,7 +96,7 @@ Copyright (c) 2025 Your Name
 
 ## Scripts
 
-There are no additional scripts defined in this package. Simply run `auto-license` to start the tool.
+There are no additional scripts defined in this package. Simply run `auto-license` (or `npx auto-license` for local installations) to start the tool. Alternatively, add a custom script to your `package.json` as shown above.
 
 ## Author
 

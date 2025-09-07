@@ -5,6 +5,25 @@ const path = require("path");
 const chokidar = require("chokidar");
 const readline = require("readline-sync");
 
+// Allowed file extensions for license injection
+const allowedExtensions = [
+  ".js",
+  ".ts",
+  ".jsx",
+  ".tsx",
+  ".py",
+  ".java",
+  ".c",
+  ".cpp",
+  ".cs",
+  ".go",
+  ".rb",
+  ".php",
+  ".swift",
+  ".rs",
+  ".bal",
+];
+
 // Ask user for folder to watch
 let folderToWatch = readline.question("Enter folder path to watch: ");
 folderToWatch = path.resolve(folderToWatch);
@@ -27,22 +46,44 @@ if (!fs.existsSync(folderToWatch)) {
   console.log(`Folder created: ${folderToWatch}`);
 }
 
-// Initialize watcher
+// Initialize watcher with ignores
 const watcher = chokidar.watch(folderToWatch, {
   persistent: true,
   ignoreInitial: true,
+  ignored: [
+    /(^|[\/\\])\../, // ignore dotfiles (.git, .svn, .DS_Store, etc.)
+    "**/node_modules/**",
+    "**/dist/**",
+    "**/build/**",
+  ],
 });
 
 watcher.on("add", (filePath) => {
-  if (fs.statSync(filePath).isFile()) {
-    const content = fs.readFileSync(filePath, "utf8");
+  try {
+    if (fs.statSync(filePath).isFile()) {
+      const ext = path.extname(filePath).toLowerCase();
 
-    // Check if license already exists
-    if (!content.startsWith("/*")) {
-      fs.writeFileSync(filePath, licenseText + content, "utf8");
-      console.log(`License added to ${path.basename(filePath)}`);
+      // Skip files that aren't in our allowed list
+      if (!allowedExtensions.includes(ext)) {
+        console.log(
+          `Skipping unsupported file: ${path.relative(folderToWatch, filePath)}`
+        );
+        return;
+      }
+
+      const content = fs.readFileSync(filePath, "utf8");
+
+      // Check if license already exists
+      if (!content.startsWith("/*")) {
+        fs.writeFileSync(filePath, licenseText + content, "utf8");
+        console.log(
+          `✅ License added to ${path.relative(folderToWatch, filePath)}`
+        );
+      }
     }
+  } catch (err) {
+    console.error(`⚠️ Skipping file: ${filePath} (${err.code})`);
   }
 });
 
-console.log(`Watching folder: ${folderToWatch} ...`);
+console.log(`👀 Watching folder: ${folderToWatch} ...`);
